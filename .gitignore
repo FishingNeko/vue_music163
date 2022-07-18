@@ -2,6 +2,7 @@
 node_modules
 /dist
 .zip
+/api_document
 
 
 # local env files
