@@ -9,5 +9,5 @@ export default new Vuex.Store({
   // mutations: {},
   // actions: {},
   // 中间件模块
-  modules: {},
+  modules: {}
 })

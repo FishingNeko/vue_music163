@@ -1,7 +1,10 @@
-import Vue from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
+import Vue from 'vue'
+import App from './App.vue'
+import router from './router'
+import store from './store'
+
+import './assets/iconfont/iconfont.css'
+import '@/assets/css/globe.css'
 
 // 引入插件的依赖资源
 import './plugins/element.js'
@@ -11,7 +14,7 @@ import 'nprogress/nprogress.css'
 
 // 图片懒加载的配置
 Vue.use(VueLazyload, {
-  loading: require ('./assets/img/we.png')
+  loading: require('./assets/img/we.png')
 })
 
 // 播放器的配置
@@ -20,10 +23,10 @@ Vue.use(APlayer, {
   productionTip: true
 })
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = false
 
 new Vue({
   router,
   store,
-  render: (h) => h(App),
-}).$mount("#app");
+  render: (h) => h(App)
+}).$mount('#app')

@@ -1,7 +1,5 @@
 <template>
-  <div>
-    login
-  </div>
+  <div>login</div>
 </template>
 <script>
 export default {
@@ -12,7 +10,7 @@ export default {
   watch: {},
   created() {},
   mounted() {},
-  methods: {},
+  methods: {}
 }
 </script>
 <style lang="less" scoped></style>
