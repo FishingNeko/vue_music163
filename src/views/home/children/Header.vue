@@ -9,8 +9,8 @@
       </div>
       <!-- 前进后退 -->
       <div class="history">
-        <el-button @click="go(-1)" icon="el-icon-caret-left" size="mini" circle></el-button>
-        <el-button @click="go(1)" icon="el-icon-caret-right" size="mini" circle></el-button>
+        <el-button @click="go(-1)" icon="el-icon-arrow-left" size="mini" circle type="info"></el-button>
+        <el-button @click="go(1)" icon="el-icon-arrow-right" size="mini" circle type="info"></el-button>
       </div>
       <!-- 搜索框 -->
       <el-input

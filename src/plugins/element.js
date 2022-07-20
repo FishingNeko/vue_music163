@@ -10,7 +10,8 @@ import {
   MenuItem,
   Message,
   Carousel,
-  CarouselItem
+  CarouselItem,
+  Pagination
 } from 'element-ui'
 
 Vue.use(Button)
@@ -23,5 +24,6 @@ Vue.use(Menu)
 Vue.use(MenuItem)
 Vue.use(Carousel)
 Vue.use(CarouselItem)
+Vue.use(Pagination)
 
 Vue.prototype.$message = Message

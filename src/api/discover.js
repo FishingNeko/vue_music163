@@ -1,4 +1,4 @@
-// 发现音乐 API
+// 个性推荐 API
 import { myAxios } from '@/lib/axios'
 
 // 获取轮播图

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <!-- 标题项 -->
-    <h3>
+    <h3 v-if="title">
       <router-link to="/home/songMenu">
         歌单推荐
         <i class="el-icon-arrow-right"></i>
@@ -23,7 +23,7 @@
           <span>{{ item.playCount | ellipsisPlayVolume }}</span>
         </div>
         <!-- 图片 -->
-        <img v-lazy="item.picUrl" class="content-img" />
+        <img v-lazy="item.picUrl || item.coverImgUrl" class="content-img" />
         <!-- 描述 -->
         <div class="content-name">
           <span>
@@ -54,7 +54,12 @@ export default {
   },
   props: {
     // 推荐歌单的数据
-    RecommendList: []
+    RecommendList: [],
+    // 是否显示标题栏
+    title: {
+      type: Boolean,
+      dafault: true
+    }
   },
   filters: {
     // 播放量转换
@@ -77,6 +82,7 @@ export default {
     margin: 20px 0 0 0;
     box-shadow: 2px 2px 5px rgba(98, 95, 95, 0.5);
     border-radius: 15px;
+    
 
     .content-img {
       width: 100%;
@@ -118,6 +124,10 @@ export default {
       color: red;
       font-size: 40px;
     }
+  }
+
+  .content-item {
+    cursor:pointer;
   }
 }
 </style>
