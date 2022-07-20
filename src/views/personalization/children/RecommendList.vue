@@ -82,6 +82,7 @@ export default {
     margin: 20px 0 0 0;
     box-shadow: 2px 2px 5px rgba(98, 95, 95, 0.5);
     border-radius: 15px;
+    cursor:pointer;
     
 
     .content-img {
@@ -124,10 +125,6 @@ export default {
       color: red;
       font-size: 40px;
     }
-  }
-
-  .content-item {
-    cursor:pointer;
   }
 }
 </style>
