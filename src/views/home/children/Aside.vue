@@ -2,14 +2,18 @@
   <div>
     <!-- 导航栏 -->
     <el-menu
-      default-active="/home/personalization"
+      :default-active="checkedPath"
       @open="handleOpen"
       @close="handleClose"
       router
-      text-color=""
       active-text-color="red"
     >
-      <el-menu-item :index="item.path" v-for="(item, i) in menuList" :key="i">
+      <el-menu-item
+        :index="item.path"
+        v-for="(item, i) in menuList"
+        :key="i"
+        @click="saveToStroage(item.path)"
+      >
         <i :class="item.icon"></i>
         <span slot="title">{{ item.title }}</span>
       </el-menu-item>
@@ -28,7 +32,11 @@ export default {
           icon: 'iconfont icon-shouye'
         },
         { path: '/home/songMenu', title: '歌单推荐', icon: 'el-icon-reading' },
-        { path: '/home/newSong', title: '最新音乐', icon: 'iconfont icon-yinle' },
+        {
+          path: '/home/newSong',
+          title: '最新音乐',
+          icon: 'iconfont icon-yinle'
+        },
         {
           path: '/home/newMv',
           title: '最新mv',
@@ -44,12 +52,24 @@ export default {
           title: '歌手',
           icon: 'iconfont icon-changge'
         }
-      ]
+      ],
+      // 选中侧边栏的路径
+      checkedPath: '/home/personalization'
     }
+  },
+  created() {
+    // 如果存在,读取存储的侧边栏信息
+    this.checkedPath =
+      window.sessionStorage.getItem('path') || '/home/personalization'
   },
   methods: {
     handleOpen() {},
-    handleClose() {}
+    handleClose() {},
+    // 保存点击状态
+    saveToStroage(path) {
+      window.sessionStorage.setItem('path', path)
+      this.checkedPath = path
+    }
   }
 }
 </script>

@@ -7,9 +7,9 @@
         v-for="(item, i) in tabbarList"
         :key="i"
         @click="getNewCate(item)"
-        :class="{ actived: params.cate === item}"
+        :class="{ actived: params.cate === item }"
       >
-      <button>{{item}}</button>
+        <button>{{ item }}</button>
       </div>
     </div>
     <!-- 分类内容 -->
@@ -123,13 +123,11 @@ button {
   padding: 12px 20px;
   border: 1px solid #f1f2f3;
   background-color: #f6f7f8;
+  cursor: pointer;
 }
 
-button:hover {
-  cursor:pointer;
-}
-.actived > button{
+.actived > button {
   font-weight: bold;
-   background-color: rgb(232, 230, 230);
+  background-color: rgb(232, 230, 230);
 }
 </style>
