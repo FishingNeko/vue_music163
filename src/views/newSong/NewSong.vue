@@ -113,7 +113,7 @@ export default {
 
   .actived > button {
     font-weight: bold;
-    background-color: rgb(232, 230, 230);
+    color:red;
   }
 }
 

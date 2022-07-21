@@ -18,10 +18,7 @@
         @click="goPlayById(item)"
       >
         <!-- 顶部播放数量 -->
-        <div class="content-title">
-          <i class="el-icon-video-play"></i>
-          <span>{{ item.playCount | ellipsisPlayVolume }}</span>
-        </div>
+        <PlayNum :playCount="item.playCount"></PlayNum>
         <!-- 图片 -->
         <img v-lazy="item.picUrl || item.coverImgUrl" class="content-img" />
         <!-- 描述 -->
@@ -39,6 +36,7 @@
   </div>
 </template>
 <script>
+import PlayNum from './PlayNum.vue'
 export default {
   data() {
     return {
@@ -48,7 +46,7 @@ export default {
   methods: {
     // 通过 ID 前往播放页
     goPlayById(item) {
-      window.sessionStorage.setItem('id',item.id)
+      window.sessionStorage.setItem('id', item.id)
       this.$router.push(`/home/detail/?id=${item.id}`)
     }
   },
@@ -58,15 +56,11 @@ export default {
     // 是否显示标题栏
     title: {
       type: Boolean,
-      dafault: true
+      default: true
     }
   },
-  filters: {
-    // 播放量转换
-    ellipsisPlayVolume(val) {
-      if (val < 100000) return val
-      return parseInt(val / 10000) + '万'
-    }
+  components: {
+    PlayNum
   }
 }
 </script>
@@ -82,8 +76,7 @@ export default {
     margin: 20px 0 0 0;
     box-shadow: 2px 2px 5px rgba(98, 95, 95, 0.5);
     border-radius: 15px;
-    cursor:pointer;
-    
+    cursor: pointer;
 
     .content-img {
       width: 100%;
@@ -97,23 +90,6 @@ export default {
       text-overflow: ellipsis;
       white-space: nowrap;
       padding: 0 10px;
-    }
-
-    .content-title {
-      position: absolute;
-      width: 100%;
-      height: 30px;
-      line-height: 30px;
-      color: #fff;
-      background-color: rgba(0, 0, 0, 0.5);
-      text-align: right;
-      border-radius: 15px 15px 0 0;
-      top: 0;
-      right: 0;
-
-      span {
-        padding-right: 10px;
-      }
     }
 
     .content-icon {

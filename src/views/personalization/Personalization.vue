@@ -12,9 +12,9 @@
 </template>
 <script>
 import Swipper from './children/Swipper.vue'
-import RecommendList from './children/RecommendList.vue'
+import RecommendList from '../../components/RecommendList.vue'
 import NewSong from './children/NewSong.vue'
-import NewMv from './children/Mv.vue'
+import NewMv from '../../components/Mv.vue'
 
 import {
   reqBanner,
@@ -42,15 +42,15 @@ export default {
     NewMv
   },
   async created() {
-    // const { data: banners } = await reqBanner()
-    // const { data: result } = await reqRecommendList()
-    // const { data: songList } = await reqNewMusic()
-    // const { data: mvList } = await reqNewMV()
-    // this.swipperList = banners.banners
-    // this.RecommendList = result.result
-    // this.newSongList = songList.result
-    // this.newMvList = mvList.result.slice(0, 3)
-    // if (banners.code !== 200) return this.$message('网络错误!')
+    const { data: banners } = await reqBanner()
+    const { data: result } = await reqRecommendList()
+    const { data: songList } = await reqNewMusic()
+    const { data: mvList } = await reqNewMV()
+    this.swipperList = banners.banners
+    this.RecommendList = result.result
+    this.newSongList = songList.result
+    this.newMvList = mvList.result.slice(0, 3)
+    if (banners.code !== 200) return this.$message('网络错误!')
   }
 }
 </script>

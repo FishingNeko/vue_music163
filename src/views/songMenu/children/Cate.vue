@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import RecommendList from '../../personalization/children/RecommendList.vue'
+import RecommendList from '../../../components/RecommendList.vue'
 
 import { reqSongMenu } from '@/api/songMenu'
 export default {
@@ -111,11 +111,6 @@ export default {
   display: flex;
   margin-top: 20px;
   justify-content: space-between;
-}
-
-/deep/ .el-pagination {
-  margin-top: 20px;
-  font-size: 16px;
 }
 
 button {

@@ -12,14 +12,15 @@
         v-for="(item, i) in swipperList"
         :key="i"
         class="swipper-item"
-        @click="goPlayById(item)"
       >
-        <!-- 标题 -->
+       <router-link :to="`/home/detail/?id=${item.targetId}`">
+         <!-- 标题 -->
         <div class="swipper-title">
           <span>{{ item.typeTitle }}</span>
         </div>
         <!-- 图片 -->
         <img :src="item.imageUrl" class="swipper-img" />
+       </router-link>
       </el-carousel-item>
     </el-carousel>
   </div>
@@ -28,10 +29,10 @@
 export default {
   methods: {
     // 通过 ID 前往播放页
-    goPlayById(item) {
-      window.sessionStorage.setItem('id', item.targetId)
-      this.$router.push(`/home/detail/?id=${item.targetId}`)
-    }
+    // goPlayById(item) {
+    //   window.sessionStorage.setItem('id', item.targetId)
+    //   this.$router.push()
+    // }
   },
   props: {
     // 轮播图的数据
