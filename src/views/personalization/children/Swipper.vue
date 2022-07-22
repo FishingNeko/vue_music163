@@ -13,6 +13,7 @@
         :key="i"
         class="swipper-item"
       >
+      <!-- 路由跳转 -->
        <router-link :to="`/home/detail/?id=${item.targetId}`">
          <!-- 标题 -->
         <div class="swipper-title">
@@ -27,13 +28,6 @@
 </template>
 <script>
 export default {
-  methods: {
-    // 通过 ID 前往播放页
-    // goPlayById(item) {
-    //   window.sessionStorage.setItem('id', item.targetId)
-    //   this.$router.push()
-    // }
-  },
   props: {
     // 轮播图的数据
     swipperList: []

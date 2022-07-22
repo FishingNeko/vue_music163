@@ -16,6 +16,7 @@
         @mouseleave="MouseMove = false"
         @mousemove="MouseMove = i"
         @click="goPlayById(item)"
+        :style="{width: myWidth + '%'}"
       >
         <!-- 顶部播放数量 -->
         <PlayNum :playCount="item.playCount"></PlayNum>
@@ -57,6 +58,10 @@ export default {
     title: {
       type: Boolean,
       default: true
+    },
+    myWidth: {
+      type: Number,
+      default: 21
     }
   },
   components: {
@@ -71,16 +76,18 @@ export default {
   justify-content: space-between;
 
   .content-item {
-    width: 250px;
+    // width: 250px;
     position: relative;
     margin: 20px 0 0 0;
     box-shadow: 2px 2px 5px rgba(98, 95, 95, 0.5);
-    border-radius: 15px;
+    border-radius: 10px;
+    overflow: hidden;
     cursor: pointer;
 
     .content-img {
       width: 100%;
-      border-radius: 15px;
+      //  border-radius: 10px;
+      // border-radius: 15px;
     }
 
     .content-name {

@@ -32,7 +32,7 @@ export default {
   color: #fff;
   background-color: rgba(0, 0, 0, 0.5);
   text-align: right;
-  border-radius: 15px 15px 0 0;
+  border-radius: 10px 10px 0 0;
   top: 0;
   right: 0;
 

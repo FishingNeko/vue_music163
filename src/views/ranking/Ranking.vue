@@ -1,25 +1,44 @@
 <template>
   <div>
-
+    <h2>官方榜</h2>
+    <!--  -->
+    <Offical :specialRankingList="specialRankingList"></Offical>
+    <h2>全球榜</h2>
+    <RecommendList :RecommendList="otherRankingList" :title="false" :myWidth="18"></RecommendList>
   </div>
 </template>
 
 <script>
+import { reqRankingList } from '@/api/ranking'
+
+import Offical from './children/Offical.vue'
+import RecommendList from '@/components/RecommendList.vue'
 export default {
-  data () {
+  components: { Offical, RecommendList},
+  data() {
     return {
-
-  }
+      // 排行榜数据
+      rankingList: []
+    }
   },
-  created () {
-
+  computed: {
+    // 前五个特殊排行
+    specialRankingList() {
+      return this.rankingList.slice(0, 4)
+    },
+    // 其他排行
+    otherRankingList() {
+      return this.rankingList.slice(4, this.rankingList.length - 1)
+    }
   },
-  methods: {
-
-  }
+  async created() {
+    const { data: res } = await reqRankingList()
+    if (res.code !== 200) return this.$message.error('网络错误')
+    this.rankingList = res.list
+    console.log(this.rankingList);
+  },
+  methods: {}
 }
 </script>
 
-<style lang="less" scoped>
-
-</style>
+<style lang="less" scoped></style>
