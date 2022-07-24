@@ -35,10 +35,9 @@ export default {
     const { data: res } = await reqRankingList()
     if (res.code !== 200) return this.$message.error('网络错误')
     this.rankingList = res.list
-    console.log(this.rankingList);
   },
   methods: {}
 }
-</script>
+</script> 
 
 <style lang="less" scoped></style>

@@ -41,6 +41,6 @@ export default {
 }
 
 .el-main {
-  padding: 10px 5% 50px;
+  padding: 10px 5% 100px;
 }
 </style>

@@ -42,15 +42,15 @@ export default {
     NewMv
   },
   async created() {
-    // const { data: banners } = await reqBanner()
-    // const { data: result } = await reqRecommendList()
-    // const { data: songList } = await reqNewMusic()
-    // const { data: mvList } = await reqNewMV()
-    // this.swipperList = banners.banners
-    // this.RecommendList = result.result
-    // this.newSongList = songList.result
-    // this.newMvList = mvList.result.slice(0, 3)
-    // if (banners.code !== 200) return this.$message('网络错误!')
+    const { data: banners } = await reqBanner()
+    const { data: result } = await reqRecommendList()
+    const { data: songList } = await reqNewMusic()
+    const { data: mvList } = await reqNewMV()
+    this.swipperList = banners.banners
+    this.RecommendList = result.result
+    this.newSongList = songList.result
+    this.newMvList = mvList.result.slice(0, 3)
+    if (banners.code !== 200) return this.$message('网络错误!')
   }
 }
 </script>

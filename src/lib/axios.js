@@ -10,7 +10,7 @@ export function myAxios(config) {
     timeout: 3000
   })
   // 默认配置
-  instance.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded'
+  // instance.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded'
   // 请求开始前做的事
   instance.interceptors.request.use((req) => {
     nProgress.start()

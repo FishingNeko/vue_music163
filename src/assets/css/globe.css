@@ -1,3 +1,4 @@
+/* 原 css 样式 */
 h3 {
   margin-bottom: 0;
 }
@@ -7,7 +8,29 @@ a {
   color: black;
 }
 
+/* element-ui 样式 */
 .el-table,
 .el-pagination {
   margin-top: 20px;
+}
+
+/* 阴影盒样式 */
+.globe-shadow-box {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  box-shadow: 2px 2px 5px rgba(98, 95, 95, 0.5);
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+/* 单行文本溢出换为省咯号 */
+.globe-overflow-text {
+  font-size: 14px;
+  padding: 5px 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

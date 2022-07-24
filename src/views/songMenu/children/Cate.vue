@@ -16,14 +16,15 @@
     <RecommendList
       :RecommendList="RecommendList"
       :title="false"
+      :myWidth="18"
     ></RecommendList>
     <!-- 底部切页栏 -->
     <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page="params.num"
-      :page-sizes="[8, 12, 16, 20]"
-      :page-size="12"
+      :page-sizes="[10, 15, 20, 50]"
+      :page-size="this.params.limit"
       layout="total, sizes, prev, pager, next, jumper"
       :total="this.params.total"
       background
@@ -62,7 +63,7 @@ export default {
         total: 0, // 获取的总数量
         num: 1, // 当前页
         cate: '全部', // 分类
-        limit: 12, // 当前页显示的数据
+        limit: 15, // 当前页显示的数据
         offset: 0 // 分页偏移量
       }
     }

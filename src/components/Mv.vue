@@ -10,7 +10,7 @@
     <!-- 内容区 -->
     <div class="container">
       <div
-        class="item"
+        class="item globe-shadow-box"
         v-for="(item, i) in newMvList"
         :key="i"
         @mouseleave="MouseMove = false"
@@ -19,9 +19,7 @@
         :style="{ width: myWidth + '%' }"
       >
         <!-- 图片 -->
-        <div class="item-img">
-          <img v-lazy="item.picUrl || item.cover" />
-        </div>
+        <img v-lazy="item.picUrl || item.cover" class="item-img" />
         <!-- 描述区 -->
         <div class="item-des">
           <!-- 标题 -->
@@ -75,51 +73,29 @@ export default {
   components: {
     PlayNum
   }
-  // filters: {
-  //   // 播放量转换
-  //   ellipsisPlayVolume(val) {
-  //     if (val < 100000) return val
-  //     return parseInt(val / 10000) + '万'
-  //   }
-  // }
 }
 </script>
 <style lang="less" scoped>
 .container {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
   width: 100%;
   flex-wrap: wrap;
 
   .item {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    position: relative;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    margin-top: 20px;
-
     .item-img {
       width: 100%;
-      img {
-        width: 100%;
-        // border-radius: 15px;
-      }
     }
 
     .item-des {
-      width: 95%;
+      margin: auto 0;
+      width: 100%;
       padding: 10px;
     }
 
     .item-name {
       width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      font-size: 15px;
     }
 
     .item-artist {

@@ -77,6 +77,7 @@ export default {
       display: flex;
       flex-wrap: wrap;
       width: 100%;
+      font-size: 14px;
 
       .item-list {
         display: flex;

@@ -132,7 +132,6 @@ export default {
     },
     // 监听当前页面的变化
     handleCurrentChange(val) {
-      console.log(val)
       this.params.num = val
       this.params.offset = (val - 1) * this.params.limit
       this.getNewMv()

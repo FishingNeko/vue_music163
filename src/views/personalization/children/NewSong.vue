@@ -12,7 +12,7 @@
       <div
         v-for="(item, i) in newSongList"
         :key="i"
-        class="item"
+        class="item globe-shadow-box"
         @mouseleave="MouseMove = false"
         @mousemove="MouseMove = i"
         @click="goPlayById(item)"
@@ -27,8 +27,8 @@
         </div>
         <!-- 音乐名与作者名 -->
         <div class="item-des">
-          <span>{{ item.name }}</span>
-          <span class="item-artist">{{ item.song.artists[0].name }}</span>
+          <div class="item-songname globe-overflow-text">{{ item.name }}</div>
+          <span class="item-artist globe-overflow-text">{{ item.song.artists[0].name }}</span>
         </div>
       </div>
     </div>
@@ -61,20 +61,17 @@ export default {
   flex-wrap: wrap;
 
   .item {
-    margin-top: 20px;
     display: flex;
     justify-content: left;
     width: 30%;
-    border-radius: 15px;
-    box-shadow: 2px 2px 5px rgba(98, 95, 95, 0.5);
 
     .img-container {
       position: relative;
+      width: 30%;
 
       .item-img {
-        width: 100px;
+        width: 100%;
         height: 100%;
-        border-radius: 15px;
       }
 
       .content-icon {
@@ -88,10 +85,16 @@ export default {
     }
 
     .item-des {
+      width: 60%;
       margin-left: 20px;
       display: flex;
+      flex-wrap: wrap;
       flex-direction: column;
       justify-content: space-evenly;
+
+      .item-songname {
+        width: 100%;
+      }
 
       .item-artist {
         font-size: 14px;

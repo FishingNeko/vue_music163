@@ -10,29 +10,38 @@
     <!-- 内容主体项 -->
     <div class="content-box">
       <div
-        class="content-item"
+        class="content-item globe-shadow-box"
         v-for="(item, i) in RecommendList"
         :key="i"
         @mouseleave="MouseMove = false"
         @mousemove="MouseMove = i"
         @click="goPlayById(item)"
-        :style="{width: myWidth + '%'}"
+        :style="{ width: myWidth + '%' }"
       >
         <!-- 顶部播放数量 -->
         <PlayNum :playCount="item.playCount"></PlayNum>
         <!-- 图片 -->
-        <img v-lazy="item.picUrl || item.coverImgUrl" class="content-img" />
+        <div class="content-img">
+          <img v-lazy="item.picUrl || item.coverImgUrl" />
+        </div>
         <!-- 描述 -->
-        <div class="content-name">
-          <span>
-            {{ item.name }}
-          </span>
+        <div class="globe-overflow-text">
+          {{ item.name }}
         </div>
         <!-- 播放图标 -->
         <div class="content-icon" v-show="MouseMove === i">
           <i class="el-icon-video-play"></i>
         </div>
       </div>
+      <!-- 可能需要多渲染的元素,用于末行左对齐 -->
+      <template v-if="newNum">
+        <div
+          v-for="(item, j) in newNum"
+          :key="j + 'a'"
+          :style="{ width: myWidth + '%' }"
+          class="test"
+        ></div>
+      </template>
     </div>
   </div>
 </template>
@@ -41,7 +50,10 @@ import PlayNum from './PlayNum.vue'
 export default {
   data() {
     return {
-      MouseMove: false
+      // 判断哪个 item 项要显示播放图标
+      MouseMove: false,
+      // 可能需要多渲染元素的个数
+      newNum: 0
     }
   },
   methods: {
@@ -49,11 +61,28 @@ export default {
     goPlayById(item) {
       window.sessionStorage.setItem('id', item.id)
       this.$router.push(`/home/detail/?id=${item.id}`)
+    },
+    // 计算末行空元素的数量
+    num() {
+      // 计算有多少条数据
+      let length = this.RecommendList.length
+      // 一行最多有多少个元素
+      let lineNum = Math.floor(100 / this.myWidth)
+      // 判断是否能除尽
+      const result = length % lineNum
+      // 如果不能除尽,需要计算添加的元素量
+      // 一行最多有多少个元素,减去最后一行多出的元素量
+      if (result) this.newNum = lineNum - result
     }
   },
   props: {
     // 推荐歌单的数据
-    RecommendList: [],
+    RecommendList: {
+      type: Array,
+      default: () => {
+        return []
+      }
+    },
     // 是否显示标题栏
     title: {
       type: Boolean,
@@ -66,6 +95,12 @@ export default {
   },
   components: {
     PlayNum
+  },
+  watch: {
+    // 监听传递过来的 RecommendList，必须在watch里才能调用到 RecommendList
+    RecommendList: function(newArr,oldArr) {
+      this.num()
+    }
   }
 }
 </script>
@@ -76,27 +111,12 @@ export default {
   justify-content: space-between;
 
   .content-item {
-    // width: 250px;
-    position: relative;
-    margin: 20px 0 0 0;
-    box-shadow: 2px 2px 5px rgba(98, 95, 95, 0.5);
-    border-radius: 10px;
-    overflow: hidden;
-    cursor: pointer;
 
     .content-img {
       width: 100%;
-      //  border-radius: 10px;
-      // border-radius: 15px;
-    }
-
-    .content-name {
-      height: 30px;
-      line-height: 30px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      padding: 0 10px;
+      img {
+        width: 100%;
+      }
     }
 
     .content-icon {
