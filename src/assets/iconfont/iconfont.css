@@ -1,33 +1,35 @@
 @font-face {
-  font-family: 'iconfont'; /* Project id 3531851 */
-  src: url('iconfont.woff2?t=1658201117576') format('woff2'), url('iconfont.woff?t=1658201117576') format('woff'),
-    url('iconfont.ttf?t=1658201117576') format('truetype');
+  font-family: "iconfont"; /* Project id 3531851 */
+  src: url('iconfont.woff2?t=1658732376791') format('woff2'),
+       url('iconfont.woff?t=1658732376791') format('woff'),
+       url('iconfont.ttf?t=1658732376791') format('truetype');
 }
 
 .iconfont {
-  font-family: 'iconfont' !important;
-  font-size: 18px;
+  font-family: "iconfont" !important;
+  font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-icon:before {
+  content: "\e651";
+}
+
 .icon-shouye:before {
-  content: '\e640';
+  content: "\e640";
 }
 
 .icon-changge:before {
-  content: '\e895';
+  content: "\e895";
 }
 
 .icon-yinle:before {
-  content: '\e613';
-}
-
-.icon-wangyiyunyinle-:before {
-  content: '\e62c';
+  content: "\e613";
 }
 
 .icon-bofangMV:before {
-  content: '\e6a3';
+  content: "\e6a3";
 }
+

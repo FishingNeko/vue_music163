@@ -53,7 +53,7 @@ export default {
     // 通过 ID 前往播放页
     goPlayById(item) {
       window.sessionStorage.setItem('id', item.id)
-      this.$router.push(`/home/detail/?id=${item.id}`)
+      this.$router.push(`/home/mvDetail/?id=${item.id}`)
     }
   },
   props: {

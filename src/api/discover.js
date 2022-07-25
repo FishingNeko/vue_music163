@@ -29,6 +29,14 @@ export const reqNewMusic = () => {
   })
 }
 
+// 根据 ID 获取歌单详情
+export const reqSongMenuDettail = (id) => {
+  return myAxios({
+    url: '/playlist/detail',
+    params: { id }
+  })
+}
+
 // 通过 ID 获取播放歌曲
 export const reqSongById = (id) => {
   return myAxios({

@@ -13,7 +13,12 @@ import {
   CarouselItem,
   Pagination,
   Table,
-  TableColumn
+  TableColumn,
+  Tooltip,
+  Tabs,
+  TabPane,
+  Divider,
+  InfiniteScroll
 } from 'element-ui'
 
 Vue.use(Button)
@@ -29,5 +34,9 @@ Vue.use(CarouselItem)
 Vue.use(Pagination)
 Vue.use(Table)
 Vue.use(TableColumn)
+Vue.use(Tooltip)
+Vue.use(Tabs)
+Vue.use(TabPane)
+Vue.use(Divider)
 
 Vue.prototype.$message = Message
