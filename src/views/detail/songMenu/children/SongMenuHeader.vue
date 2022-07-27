@@ -4,7 +4,7 @@
     <div class="container-img">
       <img :src="playList.coverImgUrl" />
       <PlauNum :playCount="playList.playCount"></PlauNum>
-      <!-- 便签 -->
+      <!-- 标签 -->
       <div class="tags-box">
         <div class="tags-item" v-for="(item, i) in playList.tags" :key="i">
           {{ item }}
@@ -26,7 +26,7 @@
       </div>
       <!-- 播放按钮与加入播放列表 -->
       <div class="btn">
-        <button class="playBtn">
+        <button class="playBtn" @click="playThisSongMenu">
           <i class="el-icon-video-play"> </i> 播放所有
         </button>
         <el-tooltip
@@ -34,6 +34,7 @@
           effect="dark"
           content="添加到我的歌单"
           placement="top"
+          @click="addToMySongMenu"
         >
           <button class="addBtn">+</button>
         </el-tooltip>
@@ -59,14 +60,14 @@ export default {
     OverFlowText
   },
   props: {
-      // 歌单信息
-      playList: {},
+    // 歌单信息
+    playList: {}
   },
   data() {
     return {
       // 描述是否展开
       isOpen: false,
-      des: '查看更多',
+      des: '查看更多'
     }
   },
   methods: {
@@ -79,6 +80,14 @@ export default {
         this.des = '查看更多'
         this.isOpen = false
       }
+    },
+    // 添加到我的歌单
+    addToMySongMenu() {
+      this.$message.warning('开发中...')
+    },
+    // 播放该歌单的所有歌曲
+    playThisSongMenu() {
+      this.$message.warning('开发中...')
     }
   },
   filters: {
@@ -166,6 +175,7 @@ export default {
         border: none;
         border-right: 1px solid gray;
         height: 100%;
+        cursor: pointer;
       }
       .addBtn {
         color: #fff;
@@ -173,6 +183,7 @@ export default {
         border-radius: 0 15px 15px 0;
         border: none;
         height: 100%;
+        cursor: pointer;
       }
     }
 

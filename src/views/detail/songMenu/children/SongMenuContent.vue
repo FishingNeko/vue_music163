@@ -10,11 +10,7 @@
           <!-- 专辑图片 -->
           <el-table-column label="封面" type="index" width="240">
             <template v-slot="scope">
-              <img
-                v-lazy="scope.row.al.picUrl"
-                alt=""
-                @click="playMusic(scope.row)"
-              />
+              <img v-lazy="scope.row.al.picUrl" @click="playMusic(scope.row)" />
             </template>
           </el-table-column>
           <!-- 歌名 -->
@@ -167,12 +163,13 @@ export default {
       const { data: newComment } = await reqCommentNew(this.paramsNew)
       this.newComments.comments = newComment.comments
       this.newComments.total = newComment.total
+      // console.log(newComment.comments);
     },
     // 显示更多热门评论
     showMore() {
-      this.paramsHot.offset += 10
+      this.params.offset += 10
       this.getCommentHot()
-    }
+    },
   },
   filters: {
     // 格式化播放时间

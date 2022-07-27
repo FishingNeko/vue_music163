@@ -1,7 +1,7 @@
 // 歌单 API
 import { myAxios } from '@/lib/axios'
 
-// 请求精品歌单
+// 获取精品歌单
 export const reqHighQuality = (limit = 2) => {
   return myAxios({
     url: '/top/playlist/highquality',
@@ -9,14 +9,15 @@ export const reqHighQuality = (limit = 2) => {
   })
 }
 
-// 请求歌曲信息
+// 获取歌单中的歌曲信息
+// 接口要求 ID 组
 export const reqSongDetail = (...ids) => {
   return myAxios({
     url: `/song/detail?ids=${ids}`
   })
 }
 
-// 请求推荐歌单
+// 获取推荐歌单
 // limit: 获取数量
 // cat: 类别
 // offset: 偏移量
@@ -27,7 +28,7 @@ export const reqSongMenu = (limit = 12, cat = '全部', offset = 0) => {
   })
 }
 
-// 请求热门评论
+// 获取热门评论
 // id 歌曲id
 // type 歌曲类型 0: 歌曲 1: mv 2: 歌单 3: 专辑 : 电台 5: 视频
 // limit 数据限制
@@ -39,7 +40,7 @@ export const reqCommentHot = params => {
   })
 }
 
-// 请求最新评论
+// 获取最新评论
 // id 歌曲id
 // type 歌曲类型 0: 歌曲 1: mv 2: 歌单 3: 专辑 : 电台 5: 视频
 // limit 数据限制

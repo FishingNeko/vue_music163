@@ -2,9 +2,12 @@
   <div>
     <!-- 发表评论区 -->
     <CommentSend></CommentSend>
+    <el-divider></el-divider>
+    <!-- 空评论提醒 -->
+    <div class="empty" v-if="!commentList.length">空空如也~快来当第一条评论吧</div>
     <!-- 其它用户评论区 -->
     <div class="container-get">
-      <div class="item-hot" v-for="(item, i) in commentList" :key="i">
+      <div class="item" v-for="(item, i) in commentList" :key="i">
         <!-- 左侧用户头像 -->
         <div class="container-img">
           <img :src="item.user.avatarUrl" />
@@ -18,12 +21,37 @@
           <!-- 发布时间 + 点赞 + 回复-->
           <div class="container-bottom">
             <span class="sub-time">{{ item.timeStr }}</span>
-            <div class="like">
+            <div class="like" @click="like">
               <i class="iconfont icon-icon"></i>
               {{ item.likedCount }}
             </div>
             <span class="btn-reply" @click="reply">回复</span>
           </div>
+          <!-- 其它人的回复 -->
+          <div class="container-get">
+            <div
+              v-for="(item2, i) in item.beReplied"
+              :key="i + 'reply'"
+              class="item"
+            >
+              <!-- 左侧用户头像 -->
+              <div class="container-img-son">
+                <img :src="item2.user.avatarUrl" />
+              </div>
+              <!-- 右侧评论 -->
+              <div class="item-content">
+                <!-- 用户姓名 -->
+                <div class="user-name">{{ item2.user.nickname }}</div>
+                <!-- 用户评论 -->
+                <div class="user-content">{{ item2.content }}</div>
+                <!-- 回复-->
+                <div class="container-bottom">
+                  <span class="btn-reply" @click="reply">回复</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 分割线 -->
           <el-divider></el-divider>
         </div>
       </div>
@@ -46,16 +74,27 @@ export default {
     // 回复评论
     reply() {
       this.$message.warning('开发中...')
+    },
+    // 点赞
+    like() {
+      this.$message.warning('开发中...')
     }
   }
 }
 </script>
 
 <style lang="less" scoped>
+.empty {
+  margin: 20px auto;
+  padding: 5px 10px;
+  color: #6d757a;
+  font-size: 14px;
+  text-align: center;
+}
 .container-get {
   width: 100%;
 
-  .item-hot {
+  .item {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -63,20 +102,30 @@ export default {
 
     .container-img {
       display: flex;
-      width: 100px;
-      height: 100px;
-      margin-right: 20px;
+      width: 10%;
 
       img {
         margin: 0 auto;
-        width: 64px;
-        height: 64px;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+      }
+    }
+
+    .container-img-son {
+      display: flex;
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+      img {
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
       }
     }
 
     .item-content {
-      width: 80%;
+      width: 90%;
       display: flex;
       align-items: center;
       flex-wrap: wrap;
@@ -108,11 +157,18 @@ export default {
 
         .like {
           margin: 0 20px;
+          cursor: pointer;
+        }
+
+        .like:hover {
+          color: red;
         }
 
         .btn-reply {
           display: block;
           cursor: pointer;
+          padding: 0 5px;
+          border-radius: 5px;
         }
 
         .btn-reply:hover {

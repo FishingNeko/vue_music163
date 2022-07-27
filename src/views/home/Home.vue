@@ -4,7 +4,7 @@
     <el-header class="el-header">
       <Header></Header>
     </el-header>
-    <el-container>
+    <el-container class="container-middle">
       <!-- 侧边栏导航区 -->
       <el-aside width="200px" class="el-aside">
         <Aside></Aside>
@@ -34,6 +34,11 @@ export default {
 
 .el-container {
   height: 100%;
+}
+
+.container-middle {
+  display: flex;
+  justify-content: center;
   overflow: hidden;
 }
 .el-aside {
@@ -41,6 +46,8 @@ export default {
 }
 
 .el-main {
-  padding: 10px 5% 100px;
+  padding: 10px 8% 100px;
+  width: 100%;
+  max-width: 2560px;
 }
 </style>
