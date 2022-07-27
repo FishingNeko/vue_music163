@@ -75,7 +75,6 @@ export default {
       const id = window.sessionStorage.getItem('id')
       const { data: mvData } = await reqMvUrl(id)
       this.url = mvData.data.url
-      console.log(mvData)
     },
     // 获取 MV 细节
     async getMvDetail() {

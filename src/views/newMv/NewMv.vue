@@ -19,7 +19,7 @@
     </div>
     <div class="row-container">
       <!-- 分类 -->
-      <span>地区:</span>
+      <span>分类:</span>
       <!-- 导航 item 项 -->
       <div
         v-for="(item, j) in tabbarList.type"
@@ -56,9 +56,9 @@
     <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
-      :current-page="params.num"
+      :current-page="Number(params.num)"
       :page-sizes="[8, 16, 32, 64]"
-      :page-size="params.limit"
+      :page-size="Number(params.limit)"
       layout="total, sizes, prev, pager, next, jumper"
       :total="params.total"
       background
@@ -78,12 +78,12 @@ export default {
       // tabbar 导航数据
       tabbarList: {
         area: ['全部', '内地', '港台', '欧美', '日本', '韩国'],
-        type: ['全部', '官方版', '原生', '现场版', '网易出品'],
+        type: ['全部', '官方版', '现场版', '网易出品'],
         order: ['上升最快', '最热', '最新']
       },
       // 请求参数列表
       // 1. `area`: 地区,可选值为：全部、内地、港台、欧美、日本、韩国、不填则为全部
-      // 2. `type`: 类型,可选值为：全部、官方版、原生、现场版、网易出品,不填则为全部
+      // 2. `type`: 类型,可选值为：全部、官方版、原生 (已删除)、现场版、网易出品,不填则为全部
       // 3. `order`: 排序,可选值为：上升最快、最热、最新、不填则为上升最快
       // 4. `limit`: 取出数量 , 默认为 30
       // 5. `offset`: 偏移数量 , 用于分页 , 如 :( 页数 -1)\*50, 其中 50 为 limit 的值 , 默认 为 0
@@ -100,6 +100,16 @@ export default {
   },
   created() {
     this.getNewMv()
+    const newMvChecked1 = window.sessionStorage.getItem('newMvChecked1'),
+      newMvChecked2 = window.sessionStorage.getItem('newMvChecked2'),
+      newMvChecked3 = window.sessionStorage.getItem('newMvChecked3'),
+      numMvNum = window.sessionStorage.getItem('numMvNum'),
+      numMvPageSize = window.sessionStorage.getItem('numMvPageSize')
+    this.params.area = newMvChecked1 ? newMvChecked1 : this.params.area
+    this.params.type = newMvChecked2 ? newMvChecked2 : this.params.type
+    this.params.order = newMvChecked3 ? newMvChecked3 : this.params.order
+    this.params.num = numMvNum ? numMvNum : this.params.num
+    this.params.limit = numMvPageSize ? numMvPageSize : this.params.limit
   },
   methods: {
     // 获取新 MV
@@ -124,6 +134,9 @@ export default {
       this.params.area = area
       this.params.type = type
       this.params.order = order
+      window.sessionStorage.setItem('newMvChecked1', area)
+      window.sessionStorage.setItem('newMvChecked2', type)
+      window.sessionStorage.setItem('newMvChecked3', order)
       this.getNewMv()
     },
     // 监听当前页面的变化
@@ -131,11 +144,13 @@ export default {
       this.params.num = val
       this.params.offset = (val - 1) * this.params.limit
       this.getNewMv()
+      window.sessionStorage.setItem('numMvNum', val)
     },
     // 监听分页大小的变化
     handleSizeChange(val) {
       this.params.limit = val
       this.getNewMv()
+      window.sessionStorage.setItem('numMvPageSize', val)
     }
   },
   components: {

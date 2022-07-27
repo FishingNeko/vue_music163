@@ -38,6 +38,15 @@
           <i class="el-icon-video-play"></i>
         </div>
       </div>
+      <!-- 可能需要多渲染的元素,用于末行左对齐 -->
+      <template v-if="newNum">
+        <div
+          v-for="(item, j) in newNum"
+          :key="j + 'a'"
+          :style="{ width: myWidth + '%' }"
+          class="test"
+        ></div>
+      </template>
     </div>
   </div>
 </template>
@@ -46,7 +55,9 @@ import PlayNum from './PlayNum.vue'
 export default {
   data() {
     return {
-      MouseMove: false
+      MouseMove: false,
+      // 可能需要多渲染元素的个数
+      newNum: 0
     }
   },
   methods: {
@@ -54,11 +65,31 @@ export default {
     goPlayById(item) {
       window.sessionStorage.setItem('id', item.id)
       this.$router.push(`/home/mvDetail/?id=${item.id}`)
+    },
+    // 计算末行空元素的数量
+    num() {
+      // if: 解决数据为空时,读取不到 length 报错的问题
+      if (this.newMvList) {
+        // 计算有多少条数据
+        let length = this.newMvList.length
+        // 一行最多有多少个元素
+        let lineNum = Math.floor(100 / this.myWidth)
+        // 判断是否能除尽
+        const result = length % lineNum
+        // 如果不能除尽,需要计算添加的元素量
+        // 一行最多有多少个元素,减去最后一行多出的元素量
+        if (result) this.newNum = lineNum - result
+      }
     }
   },
   props: {
     // mv 列表
-    newMvList: [],
+    newMvList: {
+      type: Array,
+      default: () => {
+        return []
+      }
+    },
     // 是否显示标题
     title: {
       type: Boolean,
@@ -68,6 +99,12 @@ export default {
     myWidth: {
       type: Number,
       default: 30
+    }
+  },
+  watch: {
+    // 监听传递过来的 newMvList，必须在watch里才能调用到 newMvList
+    newMvList: function (newArr, oldArr) {
+      this.num()
     }
   },
   components: {

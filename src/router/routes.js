@@ -58,6 +58,11 @@ export default [
           import(
             /* WebpackChunkName: "mv_detail" */ '@/views/detail/mv/MvDetail'
           )
+      },
+      {
+        path: '/home/search',
+        component: () =>
+          import(/* WebpackChunkName: "search" */ '@/views/search/Search')
       }
     ]
   },

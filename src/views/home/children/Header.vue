@@ -9,14 +9,27 @@
       </div>
       <!-- 前进后退 -->
       <div class="history">
-        <el-button @click="go(-1)" icon="el-icon-arrow-left" size="mini" circle type="info"></el-button>
-        <el-button @click="go(1)" icon="el-icon-arrow-right" size="mini" circle type="info"></el-button>
+        <el-button
+          @click="go(-1)"
+          icon="el-icon-arrow-left"
+          size="mini"
+          circle
+          type="info"
+        ></el-button>
+        <el-button
+          @click="go(1)"
+          icon="el-icon-arrow-right"
+          size="mini"
+          circle
+          type="info"
+        ></el-button>
       </div>
       <!-- 搜索框 -->
       <el-input
         placeholder="请输入内容"
         suffix-icon="el-icon-search"
         v-model="searchVal"
+        @keyup.enter.native="goSearch"
       ></el-input>
     </div>
     <!-- 登录 -->
@@ -35,6 +48,17 @@ export default {
     // 前进后退
     go(index) {
       window.history.go(index)
+    },
+    // 前往搜索页
+    goSearch() {
+      // 去除首尾空格
+      this.searchVal = this.searchVal.trim()
+      if (this.searchVal) {
+        this.$router.push(`/home/search?keywords=${this.searchVal}`)
+        // 必须在如路由跳转后才能 $emit serach 标志
+        // 此时组件创建 $on 监听 serach
+        this.$bus.$emit('search')
+      } else return this.$message.warning('请输入要搜索的内容')
     }
   }
 }
@@ -46,7 +70,6 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  //  padding: 0 5%;
   max-width: 2560px;
 
   .header-left {
@@ -56,7 +79,7 @@ export default {
     justify-content: space-around;
     align-items: center;
 
-    .el-button > i{
+    .el-button > i {
       font-size: 18px;
     }
 

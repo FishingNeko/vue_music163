@@ -102,7 +102,6 @@ export default {
       const { data: res } = await reqSingerList(this.params)
       if (res.code !== 200) return this.$message.error('网络错误')
       this.singerList = res.artists
-      console.log(res)
     },
     // 点击导航栏
     tabbarClick(type, area) {

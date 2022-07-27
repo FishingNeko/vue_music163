@@ -12,6 +12,9 @@ import VueLazyload from 'vue-lazyload'
 import APlayer from '@moefe/vue-aplayer'
 import 'nprogress/nprogress.css'
 
+// $bus 事件总线的导入
+Vue.prototype.$bus = new Vue()
+
 // 图片懒加载的配置
 Vue.use(VueLazyload, {
   loading: require('./assets/img/we.png')
