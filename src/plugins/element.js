@@ -18,7 +18,7 @@ import {
   Tabs,
   TabPane,
   Divider,
-  InfiniteScroll
+  Popover
 } from 'element-ui'
 
 Vue.use(Button)
@@ -38,5 +38,6 @@ Vue.use(Tooltip)
 Vue.use(Tabs)
 Vue.use(TabPane)
 Vue.use(Divider)
+Vue.use(Popover)
 
 Vue.prototype.$message = Message

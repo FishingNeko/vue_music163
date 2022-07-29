@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="container-video">
-      <video controls :src="url"></video>
+      <video controls :src="url" autoplay></video>
     </div>
     <!-- mv详情区 -->
     <div class="container-detail">
@@ -22,7 +22,7 @@
             {{ mvInfo.likedCount | ellipsisPlayVolume }}
           </div>
           <div class="share red" @click="share">
-            <i class="el-icon-magic-stick"></i>
+            <i class="iconfont icon-shoucang1"></i>
             {{ mvInfo.shareCount | ellipsisPlayVolume }}
           </div>
         </div>

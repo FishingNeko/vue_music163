@@ -35,7 +35,8 @@ export default {
     },
     // 前往排行榜详情
     gpToDetail(id) {
-      this.$router.push(`/home/details/${id}`)
+      window.sessionStorage.setItem('id',id)
+      this.$router.push(`/home/detail/?id=${id}`)
     }
   },
   props: {

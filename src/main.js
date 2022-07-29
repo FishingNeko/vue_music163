@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+// 样式引入
 import './assets/iconfont/iconfont.css'
 import '@/assets/css/globe.css'
 
@@ -22,7 +23,7 @@ Vue.use(VueLazyload, {
 
 // 播放器的配置
 Vue.use(APlayer, {
-  defaultCover: 'https://github.com/u3u.png',
+  defaultCover: 'https://image.xumaobin.xyz/2022/07/28/327b7251de041.jpg',
   productionTip: true
 })
 

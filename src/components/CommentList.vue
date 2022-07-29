@@ -4,7 +4,9 @@
     <CommentSend></CommentSend>
     <el-divider></el-divider>
     <!-- 空评论提醒 -->
-    <div class="empty" v-if="!commentList.length">空空如也~快来当第一条评论吧</div>
+    <div class="empty" v-if="!commentList.length">
+      空空如也~快来当第一条评论吧
+    </div>
     <!-- 其它用户评论区 -->
     <div class="container-get">
       <div class="item" v-for="(item, i) in commentList" :key="i">
@@ -28,7 +30,7 @@
             <span class="btn-reply" @click="reply">回复</span>
           </div>
           <!-- 其它人的回复 -->
-          <div class="container-get">
+          <div class="container-get reply">
             <div
               v-for="(item2, i) in item.beReplied"
               :key="i + 'reply'"
@@ -121,6 +123,7 @@ export default {
         width: 36px;
         height: 36px;
         border-radius: 50%;
+        margin: 0 auto;
       }
     }
 
@@ -175,6 +178,11 @@ export default {
           color: 'red';
           background-color: #e5e9ef;
         }
+      }
+
+      .reply {
+        background-color: #f2f3f5;
+        border-radius: 4px;
       }
     }
   }

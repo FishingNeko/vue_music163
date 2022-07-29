@@ -122,6 +122,7 @@ export default {
   .item {
     .item-img {
       width: 100%;
+      max-width: 250px;
     }
 
     .item-des {

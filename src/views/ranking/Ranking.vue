@@ -1,7 +1,6 @@
 <template>
   <div>
     <h2>官方榜</h2>
-    <!--  -->
     <Offical :specialRankingList="specialRankingList"></Offical>
     <h2>全球榜</h2>
     <RecommendList :RecommendList="otherRankingList" :title="false" :myWidth="18"></RecommendList>

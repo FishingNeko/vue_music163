@@ -22,3 +22,11 @@ export const reqNewSongUrl = (id) => {
     params: { id }
   })
 }
+
+// 获取歌词
+export const reqMusicLyric = (id) => {
+  return myAxios({
+    url: '/lyric',
+    params: { id }
+  })
+}

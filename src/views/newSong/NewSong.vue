@@ -12,36 +12,19 @@
         <button>{{ item.title }}</button>
       </div>
     </div>
-    <!-- 表格音乐栏 -->
-    <el-table :data="songList" stripe style="width: 100%" border>
-      <!-- index -->
-      <el-table-column type="index" label="#" width="40"> </el-table-column>
-      <!-- 专辑图片 -->
-      <el-table-column label="封面" type="index" width="240">
-        <template v-slot="scope">
-          <img v-lazy="scope.row.album.picUrl" alt="" @click="playMusic(scope.row)" />
-        </template>
-      </el-table-column>
-      <!-- 歌名 -->
-      <el-table-column prop="name" label="歌名" width="180"> </el-table-column>
-      <!-- 歌手名 -->
-      <el-table-column prop="album.artists[0].name" label="歌手" width="180">
-      </el-table-column>
-      <!-- 专辑名 -->
-      <el-table-column prop="album.name" label="专辑"> </el-table-column>
-      <!-- 音乐时长 -->
-      <el-table-column label="时长">
-        <template v-slot="scope">
-          {{ scope.row.duration | formatDuration }}
-        </template>
-      </el-table-column>
-    </el-table>
+    <!-- 下方音乐表格 -->
+   <SongTable :songList="songList" ></SongTable>
   </div>
 </template>
 
 <script>
-import { reqNewSong, reqNewSongUrl } from '@/api/newSong'
+import { reqNewSong} from '@/api/newSong'
+import SongTable from '@/components/SongTable.vue'
+
 export default {
+  components: {
+    SongTable
+  },
   data() {
     return {
       // 新歌列表
@@ -74,23 +57,6 @@ export default {
       const { data: res } = await reqNewSong(type)
       if (res.code !== 200) return this.$message.error('网络错误')
       this.songList = res.data.splice(0, 30)
-    },
-    // 播放音乐
-    playMusic(row) {
-      console.log(row);
-    }
-  },
-  filters: {
-    // 格式化播放时间
-    formatDuration(duration) {
-      // 分钟：向下取整，转为字符，不足两位前边补零
-      const minute = Math.floor(duration / 1000 / 60)
-        .toString()
-        .padStart(2, '0')
-      const second = Math.floor(duration % 60)
-        .toString()
-        .padStart(2, '0')
-      return minute + ':' + second
     }
   }
 }
@@ -113,13 +79,7 @@ export default {
 
   .actived > button {
     font-weight: bold;
-    color:red;
+    color: red;
   }
-}
-
-.cell > img {
-  width: 70%;
-  border-radius: 15px;
-  cursor: pointer;
 }
 </style>

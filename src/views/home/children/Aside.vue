@@ -2,28 +2,35 @@
   <div>
     <!-- 导航栏 -->
     <el-menu
-      :default-active="checkedPath"
-      @open="handleOpen"
-      @close="handleClose"
+      :default-active="activePath"
       router
       active-text-color="red"
+      :collapse="isCollapse"
+      :collapse-transition="false"
     >
       <el-menu-item
         :index="item.path"
         v-for="(item, i) in menuList"
         :key="i"
-        @click="saveToStroage(item.path)"
+        @click="upDataPath(item.path)"
       >
         <i :class="item.icon"></i>
         <span slot="title">{{ item.title }}</span>
       </el-menu-item>
     </el-menu>
+    <el-divider></el-divider>
+    <div class="up" @click="upToHead">
+      <i class="el-icon-arrow-up"></i>
+      <span>{{ isCollapse ? '' : '移至顶栏' }}</span>
+    </div>
   </div>
 </template>
 <script>
+import { mapState, mapMutations } from 'vuex'
 export default {
   data() {
     return {
+      spanText: '移至顶栏',
       // 导航栏数据
       menuList: [
         {
@@ -31,11 +38,15 @@ export default {
           title: '个性推荐',
           icon: 'iconfont icon-shouye'
         },
-        { path: '/home/songMenu', title: '歌单推荐', icon: 'el-icon-reading' },
+        {
+          path: '/home/songMenu',
+          title: '歌单推荐',
+          icon: 'iconfont icon-gedan'
+        },
         {
           path: '/home/newSong',
           title: '最新音乐',
-          icon: 'iconfont icon-yinle'
+          icon: 'iconfont icon-yinle1'
         },
         {
           path: '/home/newMv',
@@ -45,44 +56,59 @@ export default {
         {
           path: '/home/ranking',
           title: '排行榜',
-          icon: 'el-icon-trophy'
+          icon: 'iconfont icon-paihang'
         },
         {
           path: '/home/singer',
           title: '歌手',
           icon: 'iconfont icon-changge'
         }
-      ],
-      // 选中侧边栏的路径
-      checkedPath: '/home/personalization'
+      ]
     }
-  },
-  created() {
-    // 如果存在,读取存储的侧边栏信息
-    this.checkedPath =
-      window.sessionStorage.getItem('path') || '/home/personalization'
   },
   methods: {
-    handleOpen() {},
-    handleClose() {},
-    // 保存点击状态
-    saveToStroage(path) {
-      window.sessionStorage.setItem('path', path)
-      this.checkedPath = path
+    ...mapMutations('user', ['upDataPath', 'updataUpToHead']),
+    // 移动到顶栏
+    upToHead() {
+      this.updataUpToHead(1)
+      console.log('触发顶栏');
     }
+  },
+  computed: {
+    ...mapState('user', ['activePath', 'isCollapse', 'isUpToHead'])
   }
 }
 </script>
 <style lang="less" scoped>
-.el-menu-item > i {
+.el-menu i {
   width: 18px;
   height: 18px;
   font-size: 18px;
+  margin-right: 20px;
 }
 
-// 与 element-ui 图标统一
-.iconfont {
-  font-size: 18px;
-  margin-right: 5px;
+.up {
+  padding: 0 20px;
+  cursor: pointer;
+
+  i {
+    width: 18px;
+    height: 18px;
+    font-size: 18px;
+    margin-right: 20px;
+  }
+
+  span {
+    font-size: 12px;
+    color: #303133;
+    cursor: pointer;
+  }
+}
+
+.up:hover {
+  color: red;
+  span {
+    color: red;
+  }
 }
 </style>

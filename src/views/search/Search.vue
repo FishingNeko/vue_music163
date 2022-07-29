@@ -3,31 +3,7 @@
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <!-- 单曲区 -->
       <el-tab-pane :label="'单曲(' + song.total + ')'" name="first" v-if="song">
-        <el-table :data="song.song" border stripe style="width: 100%">
-          <el-table-column type="index" label="#"> </el-table-column>
-          <el-table-column prop="name" label="标题"> </el-table-column>
-          <el-table-column label="歌手">
-            <template v-slot="scope">
-              <div>
-                {{ scope.row.artists[0].name }}
-              </div>
-            </template>
-          </el-table-column>
-          <el-table-column label="专辑">
-            <template v-slot="scope">
-              <div>
-                {{ scope.row.album.name }}
-              </div>
-            </template>
-          </el-table-column>
-          <el-table-column label="时长">
-            <template v-slot="scope">
-              <div>
-                {{ scope.row.duration | formatDuration }}
-              </div>
-            </template>
-          </el-table-column>
-        </el-table>
+        <SongTable :songList="song.song" :showImage="false"></SongTable>
         <el-pagination
           @size-change="handleSizeChangeSong"
           @current-change="handleCurrentChangeSong"
@@ -95,6 +71,7 @@ import { reqSearch } from '@/api/search'
 
 import SongMenu from '@/components/RecommendList.vue'
 import MvList from '@/components/Mv.vue'
+import SongTable from '@/components/SongTable.vue'
 export default {
   data() {
     return {
@@ -152,7 +129,8 @@ export default {
   },
   components: {
     SongMenu,
-    MvList
+    MvList,
+    SongTable
   },
   created() {
     this.getData()

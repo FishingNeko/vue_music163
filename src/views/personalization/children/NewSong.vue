@@ -15,7 +15,7 @@
         class="item globe-shadow-box"
         @mouseleave="MouseMove = false"
         @mousemove="MouseMove = i"
-        @click="goPlayById(item)"
+        @click="playMusic(item)"
       >
         <!-- 图片区 -->
         <div class="img-container">
@@ -28,13 +28,17 @@
         <!-- 音乐名与作者名 -->
         <div class="item-des">
           <div class="item-songname globe-overflow-text">{{ item.name }}</div>
-          <span class="item-artist globe-overflow-text">{{ item.song.artists[0].name }}</span>
+          <span class="item-artist globe-overflow-text">{{
+            item.song.artists[0].name
+          }}</span>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { mapMutations } from 'vuex'
+import { reqMusicLyric, reqNewSongUrl } from '@/api/newSong'
 export default {
   data() {
     return {
@@ -42,10 +46,21 @@ export default {
     }
   },
   methods: {
-    // 通过 ID 前往播放页
-    goPlayById(item) {
-      window.sessionStorage.setItem('id', item.id)
-      this.$router.push(`/home/detail/?id=${item.id}`)
+    // 将新数据存储到 vuex 并传递到 APlayer 组件
+    ...mapMutations('aPlayer', ['receive_music_data']),
+    async playMusic(item) {
+      // 获取歌曲的 url 与 歌词
+      const { data: resUrl } = await reqNewSongUrl(item.id)
+      const { data: resLrc } = await reqMusicLyric(item.id)
+      // 交给 APlayer 的数据对象
+      const audio = {}
+      audio.id = item.id
+      audio.name = item.name
+      audio.artist = item.song.artists[0].name
+      audio.url = resUrl.data[0].url
+      audio.cover = item.picUrl
+      audio.lrc = resLrc.lrc.lyric
+      this.receive_music_data(audio)
     }
   },
   props: {

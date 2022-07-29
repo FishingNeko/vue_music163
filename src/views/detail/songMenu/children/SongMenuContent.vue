@@ -4,30 +4,7 @@
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane :label="'歌曲列表(' + musicList.length + ')'" name="first">
         <!-- 音乐表格 -->
-        <el-table :data="musicList" stripe style="width: 100%" border>
-          <!-- index -->
-          <el-table-column type="index" label="#" width="40"> </el-table-column>
-          <!-- 专辑图片 -->
-          <el-table-column label="封面" type="index" width="240">
-            <template v-slot="scope">
-              <img v-lazy="scope.row.al.picUrl" @click="playMusic(scope.row)" />
-            </template>
-          </el-table-column>
-          <!-- 歌名 -->
-          <el-table-column prop="name" label="歌名" width="180">
-          </el-table-column>
-          <!-- 歌手名 -->
-          <el-table-column prop="ar[0].name" label="歌手" width="180">
-          </el-table-column>
-          <!-- 专辑名 -->
-          <el-table-column prop="al.name" label="专辑"> </el-table-column>
-          <!-- 音乐时长 -->
-          <el-table-column label="时长">
-            <template v-slot="scope">
-              {{ scope.row.dt | formatDuration }}
-            </template>
-          </el-table-column>
-        </el-table>
+        <SongTable :songList="musicList" :dataType="0"></SongTable>
       </el-tab-pane>
       <!-- 评论列表 -->
       <el-tab-pane :label="'评论(' + newComments.total + ')'" name="second">
@@ -71,9 +48,11 @@
 <script>
 import { reqCommentHot, reqCommentNew } from '@/api/songMenu'
 import CommentList from '@/components/CommentList.vue'
+import SongTable from '@/components/SongTable.vue'
 export default {
   components: {
-    CommentList
+    CommentList,
+    SongTable
   },
   props: {
     // 音乐列表
@@ -122,6 +101,8 @@ export default {
     this.getCommentNew()
   },
   methods: {
+    //
+    handleRow() {},
     // 监听 tab栏 的点击
     handleClick(e) {
       this.activeName = e.name
@@ -169,7 +150,7 @@ export default {
     showMore() {
       this.params.offset += 10
       this.getCommentHot()
-    },
+    }
   },
   filters: {
     // 格式化播放时间

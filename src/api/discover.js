@@ -37,7 +37,7 @@ export const reqSongMenuDettail = (id) => {
   })
 }
 
-// 通过 ID 获取播放歌曲
+// 通过 ID 获取播放歌曲 url
 export const reqSongById = (id) => {
   return myAxios({
     url: '/song/url',

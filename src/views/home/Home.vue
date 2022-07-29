@@ -6,7 +6,10 @@
     </el-header>
     <el-container class="container-middle">
       <!-- 侧边栏导航区 -->
-      <el-aside width="200px" class="el-aside">
+      <el-aside
+        :width="isCollapse ? 58 + 'px' : 200 + 'px'"
+        v-show="!isUpToHead"
+      >
         <Aside></Aside>
       </el-aside>
       <!-- 内容主体区 -->
@@ -14,22 +17,27 @@
         <router-view></router-view>
       </el-main>
     </el-container>
+    <!-- 音乐播放栏 -->
+    <APlayer></APlayer>
   </el-container>
 </template>
 <script>
 import Header from './children/Header.vue'
 import Aside from './children/Aside.vue'
+import APlayer from '@/components/APlayer.vue'
+import { mapState } from 'vuex'
 export default {
-  components: { Header, Aside },
-  data() {
-    return {}
+  components: { Header, Aside, APlayer },
+  computed: {
+    ...mapState('user', ['isCollapse', 'isUpToHead'])
   }
 }
 </script>
 <style lang="less" scoped>
 .el-header {
   background-color: rgba(249, 249, 249, 0.5);
-  border-bottom: 1px red solid;
+  width: 100%;
+  border-bottom: 1px rgba(200, 200, 200, 0.3) solid;
 }
 
 .el-container {
@@ -41,8 +49,10 @@ export default {
   justify-content: center;
   overflow: hidden;
 }
+
 .el-aside {
   border-right: 1px rgba(200, 200, 200, 0.3) solid;
+  transition: width 0.3s;
 }
 
 .el-main {

@@ -26,7 +26,7 @@ export default {
     return {
       // 要发送的评论
       txt: '',
-      //
+      // 是否登录
       isLogin: false
     }
   },
