@@ -1,12 +1,5 @@
 <template>
   <div>
-    <!-- 标题区 -->
-    <h3>
-      <router-link to="/home/newSong">
-        最新音乐
-        <i class="el-icon-arrow-right"></i>
-      </router-link>
-    </h3>
     <!-- 内容区 -->
     <div class="container">
       <div

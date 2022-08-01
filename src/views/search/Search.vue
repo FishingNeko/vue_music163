@@ -2,7 +2,11 @@
   <div>
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <!-- 单曲区 -->
-      <el-tab-pane :label="'单曲(' + song.total + ')'" name="first" v-if="song">
+      <el-tab-pane
+        :label="'单曲(' + (song.total || 0) + ')'"
+        name="first"
+        v-if="song"
+      >
         <SongTable :songList="song.song" :showImage="false"></SongTable>
         <el-pagination
           @size-change="handleSizeChangeSong"
@@ -18,15 +22,11 @@
       </el-tab-pane>
       <!-- 歌单区 -->
       <el-tab-pane
-        :label="'歌单(' + songMenu.total + ')'"
+        :label="'歌单(' + (songMenu.total || 0) + ')'"
         name="second"
         v-if="songMenu"
       >
-        <SongMenu
-          :RecommendList="songMenu.songMenu"
-          :title="false"
-          :myWidth="18"
-        ></SongMenu>
+        <SongMenu :RecommendList="songMenu.songMenu" :myWidth="18"></SongMenu>
         <el-pagination
           @size-change="handleSizeChangeSongMenu"
           @current-change="handleCurrentChangeSongMenu"
@@ -41,15 +41,11 @@
       </el-tab-pane>
       <!-- MV 区 -->
       <el-tab-pane
-        :label="'MV(' + mvList.total + ')'"
+        :label="'MV(' + (mvList.total || 0) + ')'"
         name="third"
         v-if="mvList"
       >
-        <MvList
-          :newMvList="mvList.mvList"
-          :myWidth="21"
-          :title="false"
-        ></MvList>
+        <MvList :newMvList="mvList.mvList" :myWidth="21"></MvList>
         <el-pagination
           @size-change="handleSizeChangeMv"
           @current-change="handleCurrentChangeMv"
@@ -69,8 +65,8 @@
 <script>
 import { reqSearch } from '@/api/search'
 
-import SongMenu from '@/components/RecommendList.vue'
-import MvList from '@/components/Mv.vue'
+import SongMenu from '@/components/SongList.vue'
+import MvList from '@/components/MvList.vue'
 import SongTable from '@/components/SongTable.vue'
 export default {
   data() {

@@ -140,9 +140,6 @@ export default {
   }
 
   .container-detail {
-    display: flex;
-    flex-wrap: wrap;
-
     .artist-box {
       width: 100%;
       display: flex;

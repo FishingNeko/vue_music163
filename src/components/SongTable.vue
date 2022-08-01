@@ -4,11 +4,13 @@
     :data="songList"
     stripe
     style="width: 100%"
-    border
+   
     @row-click="handleRow"
+    :cell-style="{ 'text-align': 'center' }"
+    :header-cell-style="{ 'text-align': 'center' }"
   >
     <!-- index -->
-    <el-table-column type="index" label="#" width="40"> </el-table-column>
+    <el-table-column type="index" label="#"> </el-table-column>
     <!-- 专辑图片-可选显示 -->
     <el-table-column label="封面" type="index" v-if="showImage" width="180">
       <template v-slot="scope">
@@ -26,7 +28,7 @@
       </template>
     </el-table-column>
     <!-- 专辑名 -->
-    <el-table-column label="专辑">
+    <el-table-column label="专辑" width="300">
       <template v-slot="scope">
         <div>
           {{ dataType ? scope.row.album.name : scope.row.al.name }}
@@ -118,8 +120,8 @@ export default {
 }
 
 .cell > img {
-  width: 100px;
-  border-radius: 15px;
+  width: 64px;
+  border-radius: 4px;
   cursor: pointer;
 }
 </style>

@@ -1,12 +1,5 @@
 <template>
   <div class="container">
-    <!-- 标题项 -->
-    <h3 v-if="title">
-      <router-link to="/home/songMenu">
-        歌单推荐
-        <i class="el-icon-arrow-right"></i>
-      </router-link>
-    </h3>
     <!-- 内容主体项 -->
     <div class="content-box">
       <div
@@ -83,11 +76,7 @@ export default {
         return []
       }
     },
-    // 是否显示标题栏
-    title: {
-      type: Boolean,
-      default: true
-    },
+    // 自定义宽度
     myWidth: {
       type: Number,
       default: 21

@@ -13,11 +13,10 @@
       </div>
     </div>
     <!-- 分类内容 -->
-    <RecommendList
+    <SongList
       :RecommendList="RecommendList"
-      :title="false"
       :myWidth="18"
-    ></RecommendList>
+    ></SongList>
     <!-- 底部切页栏 -->
     <el-pagination
       @size-change="handleSizeChange"
@@ -34,7 +33,7 @@
 </template>
 
 <script>
-import RecommendList from '../../../components/RecommendList.vue'
+import SongList from '../../../components/SongList.vue'
 
 import { reqSongMenu } from '@/api/songMenu'
 export default {
@@ -69,7 +68,7 @@ export default {
     }
   },
   components: {
-    RecommendList
+    SongList
   },
   created() {
     this.getSongList()

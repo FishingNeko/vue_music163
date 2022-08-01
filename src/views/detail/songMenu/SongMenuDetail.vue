@@ -10,9 +10,9 @@
 <script>
 import { reqSongMenuDettail } from '@/api/discover'
 import { reqSongDetail } from '@/api/songMenu'
-
 import SongMenuHeader from './children/SongMenuHeader.vue'
 import SongMenuContent from './children/SongMenuContent.vue'
+
 export default {
   components: {
     SongMenuHeader,

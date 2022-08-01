@@ -51,7 +51,7 @@
     </div>
 
     <!-- 内容主体区 -->
-    <NewMv :title="false" :newMvList="mvList" :myWidth="23"></NewMv>
+    <NewMv :newMvList="mvList" :myWidth="23"></NewMv>
     <!-- 分页栏区 -->
     <el-pagination
       @size-change="handleSizeChange"
@@ -69,7 +69,7 @@
 
 <script>
 import { reqNewMv } from '@/api/newMv'
-import NewMv from '@/components/Mv.vue'
+import NewMv from '@/components/MvList.vue'
 export default {
   data() {
     return {

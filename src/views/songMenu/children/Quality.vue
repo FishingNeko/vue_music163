@@ -1,7 +1,12 @@
 <template>
   <div class="container">
     <!-- 歌单区 -->
-    <div class="item" v-for="item in playlists" :key="item.id">
+    <div
+      class="item"
+      v-for="item in playlists"
+      :key="item.id"
+      @click="goDetail(item.id)"
+    >
       <!-- 左侧图片 -->
       <div class="item-img">
         <img :src="item.coverImgUrl" />
@@ -20,11 +25,14 @@
 
 <script>
 export default {
-  data() {
-    return {}
-  },
   props: {
     playlists: []
+  },
+  methods: {
+    goDetail(id) {
+      window.sessionStorage.setItem('id', id)
+      this.$router.push(`/home/detail/?id=${id}`)
+    }
   }
 }
 </script>

@@ -3,7 +3,7 @@
     <h2>官方榜</h2>
     <Offical :specialRankingList="specialRankingList"></Offical>
     <h2>全球榜</h2>
-    <RecommendList :RecommendList="otherRankingList" :title="false" :myWidth="18"></RecommendList>
+    <RecommendList :RecommendList="otherRankingList" :myWidth="18"></RecommendList>
   </div>
 </template>
 
@@ -11,7 +11,7 @@
 import { reqRankingList } from '@/api/ranking'
 
 import Offical from './children/Offical.vue'
-import RecommendList from '@/components/RecommendList.vue'
+import RecommendList from '@/components/SongList.vue'
 export default {
   components: { Offical, RecommendList},
   data() {

@@ -31,12 +31,13 @@
         class="content-item globe-shadow-box"
         v-for="(item, j) in singerList"
         :key="j"
+        @click="goToDetail(item.id)"
       >
         <img v-lazy="item.img1v1Url" />
         <div class="item-name globe-overflow-text">{{ item.name }}</div>
       </div>
     </div>
-    <!-- 分也区 -->
+    <!-- 分页区 -->
     <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
@@ -102,6 +103,12 @@ export default {
       const { data: res } = await reqSingerList(this.params)
       if (res.code !== 200) return this.$message.error('网络错误')
       this.singerList = res.artists
+    },
+    // 前往歌手详情页
+    goToDetail(id) {
+      console.log(id);
+      this.$message.warning('歌手页?在写了在写了')
+      // this.$router.push(``)
     },
     // 点击导航栏
     tabbarClick(type, area) {

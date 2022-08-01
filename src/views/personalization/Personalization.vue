@@ -3,18 +3,38 @@
     <!-- 轮播图区 -->
     <Swipper :swipperList="swipperList"></Swipper>
     <!-- 歌单推荐 -->
+    <h3>
+      <router-link to="/home/songMenu">
+        歌单推荐
+        <i class="el-icon-arrow-right"></i>
+      </router-link>
+    </h3>
     <RecommendList :RecommendList="RecommendList"></RecommendList>
+    <el-divider></el-divider>
     <!-- 最新音乐 -->
+    <h3>
+      <router-link to="/home/newSong">
+        最新音乐
+        <i class="el-icon-arrow-right"></i>
+      </router-link>
+    </h3>
     <NewSong :newSongList="newSongList"></NewSong>
+    <el-divider></el-divider>
     <!-- 最新 MV -->
+    <h3>
+      <router-link to="/home/newMv">
+        最新MV
+        <i class="el-icon-arrow-right"></i>
+      </router-link>
+    </h3>
     <NewMv :newMvList="newMvList"></NewMv>
   </div>
 </template>
 <script>
 import Swipper from './children/Swipper.vue'
-import RecommendList from '../../components/RecommendList.vue'
+import RecommendList from '../../components/SongList.vue'
 import NewSong from './children/NewSong.vue'
-import NewMv from '../../components/Mv.vue'
+import NewMv from '../../components/MvList.vue'
 
 import {
   reqBanner,

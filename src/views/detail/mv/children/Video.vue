@@ -146,18 +146,17 @@ export default {
         img {
           width: 56px;
           border-radius: 50%;
-          margin: auto;
+          margin: 10px auto;
           height: 56px;
         }
       }
 
       .container-base {
-        display: flex;
-        flex-wrap: wrap;
         width: 90%;
       }
       .container-top {
         width: 100%;
+        height: 75px;
         display: flex;
         justify-content: space-between;
         align-items: center;

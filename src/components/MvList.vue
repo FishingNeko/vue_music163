@@ -1,12 +1,5 @@
 <template>
   <div>
-    <!-- 标题区 -->
-    <h3 v-if="title">
-      <router-link to="/home/newMv">
-        最新MV
-        <i class="el-icon-arrow-right"></i>
-      </router-link>
-    </h3>
     <!-- 内容区 -->
     <div class="container">
       <div
@@ -90,11 +83,6 @@ export default {
         return []
       }
     },
-    // 是否显示标题
-    title: {
-      type: Boolean,
-      default: true
-    },
     // 一行的单个 item 项的宽度
     myWidth: {
       type: Number,
@@ -122,7 +110,7 @@ export default {
   .item {
     .item-img {
       width: 100%;
-      max-width: 250px;
+      max-height: 250px;
     }
 
     .item-des {

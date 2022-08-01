@@ -35,7 +35,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .el-header {
-  background-color: rgba(249, 249, 249, 0.5);
+  background-color:#fff;
   width: 100%;
   border-bottom: 1px rgba(200, 200, 200, 0.3) solid;
 }

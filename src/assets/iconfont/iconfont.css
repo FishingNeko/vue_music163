@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3531851 */
-  src: url('iconfont.woff2?t=1659074911966') format('woff2'),
-       url('iconfont.woff?t=1659074911966') format('woff'),
-       url('iconfont.ttf?t=1659074911966') format('truetype');
+  src: url('iconfont.woff2?t=1659316094185') format('woff2'),
+       url('iconfont.woff?t=1659316094185') format('woff'),
+       url('iconfont.ttf?t=1659316094185') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,26 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-xinxi:before {
+  content: "\e649";
+}
+
+.icon-vip:before {
+  content: "\e65e";
+}
+
+.icon-ico_dengchu:before {
+  content: "\e60e";
+}
+
+.icon-github:before {
+  content: "\e64c";
+}
+
+.icon-gitee:before {
+  content: "\e60c";
 }
 
 .icon-paihang:before {

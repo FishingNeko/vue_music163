@@ -34,8 +34,27 @@ a {
   padding: 0 !important;
 }
 
-.el-menu--horizontal>.el-menu-item.is-active {
+.el-menu--horizontal > .el-menu-item.is-active {
   border-bottom: none !important;
+}
+
+.el-pager > .active {
+  background-color: #f383 !important;
+}
+
+.number:hover,
+.el-icon-d-arrow-right,
+.el-scrollbar__view > .selected,
+.el-select-dropdown__list:hover {
+  color: #f383 !important;
+}
+
+.el-input > .el-input__inner:hover {
+  border: 1px solid #f383 !important;
+}
+
+.el-input > .el-input__inner:focus {
+  border: 1px solid #f383 !important;
 }
 
 /* APlayer 样式 */
@@ -43,7 +62,6 @@ a {
   width: 120px !important;
   height: 120px !important;
 } */
-
 
 /* 阴影盒样式 */
 .globe-shadow-box {

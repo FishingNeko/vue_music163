@@ -17,12 +17,13 @@
         <i :class="item.icon"></i>
         <span slot="title">{{ item.title }}</span>
       </el-menu-item>
+      <el-divider></el-divider>
+      <!-- 移动到顶栏按钮 -->
+      <el-menu-item @click="updataUpToHead(true)" class="btn-to-head">
+        <i class="el-icon-arrow-up"></i>
+        <span slot="title">移至顶栏</span>
+      </el-menu-item>
     </el-menu>
-    <el-divider></el-divider>
-    <div class="up" @click="upToHead">
-      <i class="el-icon-arrow-up"></i>
-      <span>{{ isCollapse ? '' : '移至顶栏' }}</span>
-    </div>
   </div>
 </template>
 <script>
@@ -30,7 +31,6 @@ import { mapState, mapMutations } from 'vuex'
 export default {
   data() {
     return {
-      spanText: '移至顶栏',
       // 导航栏数据
       menuList: [
         {
@@ -67,12 +67,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('user', ['upDataPath', 'updataUpToHead']),
-    // 移动到顶栏
-    upToHead() {
-      this.updataUpToHead(1)
-      console.log('触发顶栏');
-    }
+    ...mapMutations('user', ['upDataPath', 'updataUpToHead'])
   },
   computed: {
     ...mapState('user', ['activePath', 'isCollapse', 'isUpToHead'])
@@ -87,28 +82,7 @@ export default {
   margin-right: 20px;
 }
 
-.up {
-  padding: 0 20px;
-  cursor: pointer;
-
-  i {
-    width: 18px;
-    height: 18px;
-    font-size: 18px;
-    margin-right: 20px;
-  }
-
-  span {
-    font-size: 12px;
-    color: #303133;
-    cursor: pointer;
-  }
-}
-
-.up:hover {
-  color: red;
-  span {
-    color: red;
-  }
+.btn-to-head {
+  color: #9499a0;
 }
 </style>

@@ -18,7 +18,13 @@ import {
   Tabs,
   TabPane,
   Divider,
-  Popover
+  Popover,
+  Card,
+  Form,
+  FormItem,
+  DropdownMenu,
+  DropdownItem,
+  Dropdown
 } from 'element-ui'
 
 Vue.use(Button)
@@ -39,5 +45,11 @@ Vue.use(Tabs)
 Vue.use(TabPane)
 Vue.use(Divider)
 Vue.use(Popover)
+Vue.use(Card)
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(DropdownMenu)
+Vue.use(DropdownItem)
+Vue.use(Dropdown)
 
 Vue.prototype.$message = Message
